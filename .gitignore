@@ -1,0 +1,8 @@
+#dependencies
+node_modules/
+#configuration
+.env
+# package file
+package-lock.json
+#mac
+.DS_Store

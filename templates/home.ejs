@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <title>Document</title>
+</head>
+<body>
+Welcome! Choose mode:
+<div class="anchors">
+    <a href="list">Stock symbol list</a>
+    <a href="company">Company information and stock prices</a>
+    <a href="compare">Compare two firms</a>
+</div> 
+<% if (form != "default") { %>
+     <%- include(`forms/${form}`) %> 
+    <% } %>
+
+
+    <a href="./">Go to menu</a>
+
+</body>
+</html>

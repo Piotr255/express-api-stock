@@ -1,0 +1,16 @@
+:root {
+    font-size: xx-large;
+}
+.anchors {
+    display: flex;
+    margin: 10px;
+    width: 100%;
+}
+.anchors a {
+    padding: 5px;
+    text-decoration: none;
+    border: 10px ridge rgba(211, 220, 50, 0.6);
+    border-radius: 24px;
+    margin: 5px;
+}
+
