@@ -3,16 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
     <link rel="stylesheet" href="/style.css">
-    <title>Document</title>
 </head>
 <body>
-Welcome! Choose mode:
-<div class="anchors">
-    <a href="form/list">Stock symbol list</a>
-    <a href="form/compare">Compare two firms</a>
-</div>
-
-
+    <div id="error-box">
+    <h1>OH NO!</h1>
+    <h1><%= errorInfo.code %></h1>
+    <h2><%= errorInfo.message %></h2>
+    <a href="/api/v1/home">Go to menu</a>
+    </div>
 </body>
 </html>

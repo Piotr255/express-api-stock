@@ -1,6 +1,7 @@
 import express from 'express';
 import financialData from './routes/financialData';
 import path from 'path';
+import { errorHandler } from './middlewares/error';
 
 export function createApp() {
     const app = express();
@@ -10,5 +11,9 @@ export function createApp() {
     app.use(express.urlencoded({extended: true}));
     app.use(express.json())
     app.use('/api/v1/', financialData);
+    app.get('/*splat',function (req, res, next) {
+        res.redirect('/api/v1/home');
+    });
+    app.use(errorHandler);
     return app;
 }

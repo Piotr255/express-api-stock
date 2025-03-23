@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   
+</head>
+<body>
+    <% if (typeof formType !== 'undefined') { %>
+    <%- include(`./forms/${formType}`) %>
+    <% } %>
+    <% if (typeof resultData !== 'undefined') { %>
+    <%- include(`./results/${resultName}`, {resultData: resultData}) %>
+    <% } %>
+    <a href="/api/v1/home">Go to menu</a>
+</body>
+</html>

@@ -1,0 +1,10 @@
+<div>
+    <ol>
+        <% resultData.forEach(element => { %>
+            <li> <%
+            for(const key in element) { %>
+                <strong><%=key%> </strong> <%= element[key] %></li>
+        <% }
+    %> <% }); %>
+    </ol>
+</div>

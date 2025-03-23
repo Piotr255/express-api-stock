@@ -1,12 +1,13 @@
 import { Router } from "express";
-import { home, form, list, company, compare } from "../handlers/financialData";
+import { home, form, list, compare } from "../handlers/financialData";
+import { errorHandler } from "../middlewares/error";
 
 const router = Router();
 
 
-router.get("/", home);
-router.get("/:type", form);
-router.post("/list", list);
-router.post("/company", company);
-router.post("/compare", compare);
+router.get("/home", home);
+router.get("/form/:type", form);
+router.get("/list", list);
+router.get("/compare", compare);
+
 export default router;

@@ -1,0 +1,81 @@
+<div style="display:flex;">
+    <ol>
+        <% for(const key in resultData.toShowOne) { %>
+            <%if(key !== 'currency_data') {%>
+        <li <% if (typeof resultData.toShowOne[key] !== "number") { %> style="color: blue;" <% } 
+        else if (resultData.toShowOne[key]>
+            resultData.toShowTwo[key]){ %> style="color: green;" <% } else if (resultData.toShowOne[key] < resultData.toShowTwo[key]) { %>
+            style="color: red;" <% } %>  ><strong><%=key%> </strong> <%=
+            resultData.toShowOne[key] %>
+        </li>
+
+        <% }} %>
+    </ol>
+    <ol>
+        <% for(const key in resultData.toShowTwo) { %>
+            <%if(key !== 'currency_data') {%>
+            <li <% if (typeof resultData.toShowTwo[key] !== "number") { %> style="color: blue;" <% } 
+            else if (resultData.toShowOne[key]<
+            resultData.toShowTwo[key]){ %> style="color: green;" <% } else if (resultData.toShowOne[key] > resultData.toShowTwo[key]) { %>
+            style="color: red;" <% } %> ><strong><%=key%> </strong> <%=
+            resultData.toShowTwo[key] %>
+        </li>
+        <% }} %>
+    </ol>
+
+</div>
+
+<div>
+    <span><%= resultData.toShowOne.share_price %>$ ---</span>  <span><%= (resultData.toShowOne.share_price * resultData.toShowOne.currency_data[0].mid).toFixed(2)%>zł --- Data kursu: <%= resultData.toShowOne.pricing_date %> </span> 
+</div>
+<div>
+    <span><%= resultData.toShowTwo.share_price %>$ ---</span>  <span><%= (resultData.toShowTwo.share_price * resultData.toShowTwo.currency_data[0].mid).toFixed(2)%>zł --- Data kursu: <%= resultData.toShowTwo.pricing_date %></span>
+</div>
+
+<div style="display: flex; flex-direction: column;">
+    <canvas id="myChart1"></canvas>
+    <canvas id="myChart2"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+(async function() {
+    const data1= <%- JSON.stringify(resultData.toShowOne.currency_data) %>;
+    const data2= <%- JSON.stringify(resultData.toShowTwo.currency_data) %>;
+  new Chart(
+    document.getElementById('myChart1'),
+    {
+      data: {
+        labels: data1.map(row => row.effectiveDate),
+        datasets: [
+          { 
+            type: 'line',
+            label: 'values of dollars in złoty (firm1)',
+            data: data1.map(row => row.mid),
+            backgroundColor: 'red',
+            borderColor: 'red'
+          },
+
+
+        ]
+      }
+    }
+  );
+  new Chart(
+    document.getElementById('myChart2'),
+    {
+      type: 'line',
+      data: {
+        labels: data2.map(row => row.effectiveDate),
+        datasets: [
+          {
+            label: 'values of dollars in złoty (firm2)',
+            data: data2.map(row => row.mid)
+          }
+        ]
+      }
+    }
+  );
+})();
+</script>
